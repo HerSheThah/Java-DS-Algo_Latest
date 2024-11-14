@@ -93,6 +93,23 @@ public class Main {
         }
         return new int[]{};
     }
+    // Sub arraysum [DOUBT STILL NOT CLEAR]
+    public static int[] subarraySum(int[] nums, int target) {
+        Map<Integer, Integer> sumIndex = new HashMap<>();
+        sumIndex.put(0, -1);
+        int currentSum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            currentSum += nums[i];
+            if (sumIndex.containsKey(currentSum - target)) {
+                return new int[]{sumIndex.get(currentSum - target) + 1, i};
+            }
+            sumIndex.put(currentSum, i);
+        }
+
+        return new int[]{};
+    }
+
 
     public static void main(String[] args) {
 

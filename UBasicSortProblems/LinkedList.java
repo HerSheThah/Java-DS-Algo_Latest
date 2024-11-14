@@ -98,12 +98,35 @@ public class LinkedList {
             temp= temp.next;
         }
     }
-
+    // Insertion sort
     public void insertionSort(){
             if(length<2)
                 return;
-            Node temp = head.next;
+           Node sortedHead = head;
+           Node unsortedHead = head.next;
+           sortedHead.next=null;
+           while (unsortedHead != null){
+               Node cur = unsortedHead;
+               unsortedHead= unsortedHead.next;
+               if(cur.value< sortedHead.value){
+                   cur.next= sortedHead;
+                   sortedHead=cur;
+               }else{
+                   Node search = sortedHead;
+                   while(search.next != null && cur.value> search.next.value){
+                       search= search.next;
+                   }
+                   cur.next= search.next;
+                   search.next=cur;
 
+               }
+           }
+           head=sortedHead;
+           Node temp = head;
+           while(temp.next!=null){
+               temp=temp.next;
+           }
+           tail=temp;
     }
 
 
